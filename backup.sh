@@ -1,17 +1,7 @@
 # Nextcloud backup script, based on https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html.
-if [ "$#" -gt "0" ] ;then
-  if [ "$1" = "-h" ] || [ "$1" = "--help" ] ;then
-    echo "Usage: nextcloud-backup [BACKUP_DIR]"
-    echo "The backup will be created under 'options.services.nextcloudBackup.backupDir' unless BACKUP_DIR is given."
-    exit 1
-  fi
-fi
 if [ "$(id -un)" != "nextcloud" ] ;then
   echo "This script has to be run as the nextcloud user, aborting."
   exit 1
-fi
-if [ "$#" = "1" ] ;then
-  BACKUP_DIR="$1"
 fi
 if [ ! -d "$BACKUP_DIR" ] ;then
   echo "The backup directory '$BACKUP_DIR' does not exist, aborting."
